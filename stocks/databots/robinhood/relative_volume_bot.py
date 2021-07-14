@@ -8,7 +8,7 @@ import pandas as pd
 
 class rv_bot:
     def __init__(self,tickers):
-            #self._account = account('################','###################')
+            #self._account = account('nimraw23','KeonSynack@020')
             self._start = time.perf_counter()
             self._df = rh('null','null').get_vols(tickers)
             self._tickers = list(self._df['tickers'])
@@ -24,7 +24,7 @@ class rv_bot:
         vol = [float(vol[x]) for x in range(len(vol))] 
         avgs = list(self._avVol)
         avgs = [float(avgs[x]) for x in range(len(avgs))] 
-        rel = [round(ratio(vol[x],avgs[x]),1) for x in range(len(avgs))]
+        rel = [round(utils.ratio(vol[x],avgs[x]),1) for x in range(len(avgs))]
         indexes = [i for i in range(len(rel)) if rel[i] >= 5]
         #[self._tickers[indexes[x]] for x in range(len(indexes))]
         return indexes
@@ -34,7 +34,7 @@ class rv_bot:
         vol = [float(vol[x]) for x in range(len(vol))] 
         avgs = list(self._avVol)
         avgs = [float(avgs[x]) for x in range(len(avgs))] 
-        rel = [round(ratio(vol[x],avgs[x]),1) for x in range(len(avgs))]
+        rel = [round(utils.ratio(vol[x],avgs[x]),1) for x in range(len(avgs))]
         #indexes = [i for i in range(len(rel)) if rel[i] >= 5]
         #[self._tickers[indexes[x]] for x in range(len(indexes))]
         return rel
@@ -44,7 +44,7 @@ class rv_bot:
         vol = [float(vol[x]) for x in range(len(vol))] 
         avgs = list(self._avVol)
         avgs = [float(avgs[x]) for x in range(len(avgs))] 
-        rel = [round(ratio(vol[x],avgs[x]),1) for x in range(len(avgs))]
+        rel = [round(utils.ratio(vol[x],avgs[x]),1) for x in range(len(avgs))]
         indexes = [i for i in range(len(rel)) if rel[i] >= 5]
         
         return [self._tickers[indexes[x]] for x in range(len(indexes))]
@@ -73,8 +73,8 @@ class utils:
             #cap_time_form = cap_time.strftime("%d-%b-%Y %H.%M.%S")
             return cap_time_form
 
-def ratio(start,final):
-    return float(start)/float(final)
+    def ratio(start,final):
+        return float(start)/float(final)
 
 
 class bot_manager:
