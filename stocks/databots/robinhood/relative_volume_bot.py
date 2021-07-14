@@ -8,7 +8,7 @@ import pandas as pd
 
 class rv_bot:
     def __init__(self,tickers):
-            #self._account = account('nimraw23','KeonSynack@020')
+            #self._account = account('################','###################')
             self._start = time.perf_counter()
             self._df = rh('null','null').get_vols(tickers)
             self._tickers = list(self._df['tickers'])
